@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="resume_builder.css">
+</head>
+<body>
+    <header>
+        <h1>Resume Builder</h1>
+        <p>Next steps to finalize your professional resume!</p>
+        <nav>
+            <a href="dashboard.html">Back to Dashboard</a>
+            <a id="logout-btn" href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Instructions Section -->
+        <section class="instructions">
+            <h2>Here’s What to Do Next:</h2>
+            <ol>
+                <li><strong>Step 1:</strong> Build your resume by filling in your details and using our industry-specific bullet points.</li>
+                <li><strong>Step 2:</strong> Download your resume, print it out, and get ready to send it off!</li>
+            </ol>
+        </section>
+
+        <!-- Resume Template Preview -->
+        <section class="resume-preview">
+            <h3>Resume Preview</h3>
+            <div id="template-preview">
+                <img src="https://cdn-images.zety.com/templates/zety/valera-11-classic-silver-dark-332@3x.png" alt="Modern Resume Template">
+            </div>
+        </section>
+        
+        
+
+
+
+        <!-- Action Button -->
+        <a href="edit_resume.html" class="action-btn">Create My Resume</a>
+    </main>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <h2>Create Your Resume</h2>
+        <form id="resume-form">
+            <div>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div>
+                <label for="education">Education:</label>
+                <textarea id="education" placeholder="Enter your education details" required></textarea>
+            </div>
+            <div>
+                <label for="experience">Work Experience:</label>
+                <textarea id="experience" placeholder="Enter your work experience"></textarea>
+            </div>
+            <select id="Research" name="Research" required
+            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none">
+            <option value="" disabled selected>Research</option>
+            <option value="Paper presentation">Paper presentation</option>
+            <option value="Poster presentation">Poster presentation</option>
+            <option value="Workshop">Workshop</option>
+            <option value="Seminar">Seminar</option>
+            <option value="Technical Event">Technical Event</option>
+          </select>
+            <div>
+                <label for="skills">Skills:</label>
+                <textarea id="skills" placeholder="Enter your skills" required></textarea>
+            </div>
+            <button type="submit">Generate Resume</button>
+             
+</div>
+        </form>
+        <div id="resume-output" class="hidden"></div>
+    </section>
+
+    <!-- JavaScript for Form Handling -->
+    <script>
+        document.getElementById('resume-form').addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent page reload
+            
+            // Get form input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const education = document.getElementById('education').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+
+            // Display generated resume
+            const output = document.getElementById('resume-output');
+            output.innerHTML = `
+                <h2>${name}'s Resume</h2>
+                <p><strong>Email:</strong> ${email}</p>
+                <h3>Education</h3>
+                <p>${education}</p>
+                <h3>Work Experience</h3>
+                <p>${experience || "Not provided"}</p>
+                <h3>Skills</h3>
+                <p>${skills}</p>
+            `;
+            output.classList.remove('hidden');
+        });
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.removeItem('authToken'); // Clear token from local storage
+            window.location.href = 'login.html'; // Redirect to login page
+        });
+    </script>
+
+    <!-- JavaScript for Template Preview -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const queryParams = new URLSearchParams(window.location.search);
+            const templateType = queryParams.get('template');
+
+            const templateMap = {
+                modern: 'https://cdn-images.zety.com/templates/zety/valera-11-classic-silver-dark-332@3x.png',
+                classic: '	https://www.myperfectresume.com/wp-content/uploads/2023/09/resume-modern-template.png',
+                creative: 'https://beamjobs.wpenginepowered.com/wp-content/uploads/2023/01/academic-resume-template.png'
+            };
+
+            const previewSection = document.getElementById('template-preview');
+            // Display the selected template or show fallback
+            if (templateType && templateMap[templateType]) {
+                previewSection.innerHTML = `<img src="${templateMap[templateType]}" alt="${templateType} Template">`;
+            } else {
+                previewSection.innerHTML = '<p>No template selected. Please go back and pick a template.</p>';
+            }
+        });
+
+        document.getElementById('template-selector').addEventListener('change', (event) => {
+            const selectedTemplate = event.target.value;
+
+            // Hide all templates
+            document.querySelectorAll('.resume-template').forEach(template => {
+                template.style.display = 'none';
+            });
+
+            // Show the selected template
+            document.getElementById(selectedTemplate).style.display = 'block';
+        });
+    </script>
+</body>
+</html>

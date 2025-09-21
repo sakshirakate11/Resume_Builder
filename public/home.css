@@ -1,0 +1,179 @@
+body {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    text-align: center;
+    padding: 0px;
+    background: url('https://via.placeholder.com/740') no-repeat center center; /* Placeholder Background image */
+    background-size: cover; /* Makes the image fill the background */
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 15px;
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #4CAF50;
+}
+
+/* Hero Section Styles */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+.hero p {
+    font-size: 18px;
+    margin: 20px 0;
+    color: #555;
+}
+
+.hero .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.hero .buttons a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.hero .signup {
+    background-color: #4CAF50;
+}
+
+.hero .signup:hover {
+    background-color: #45a049;
+}
+
+.hero .login {
+    background-color: #007bff;
+}
+
+.hero .login:hover {
+    background-color: #0056b3;
+}
+
+/* Features Section */
+.features {
+    padding: 40px 20px;
+    background-color: #f4f4f9;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.feature {
+    margin-bottom: 30px;
+}
+
+.feature h3 {
+    color: #4CAF50;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Resume Templates Section */
+.templates {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f4f4f9;
+}
+
+.templates h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.template-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.template {
+    text-align: center;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+.template img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.template h3 {
+    font-size: 18px;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.template a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.template a:hover {
+    background-color: #388be5;
+}
+
+

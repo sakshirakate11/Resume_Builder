@@ -1,0 +1,259 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Layout */
+main {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+}
+
+.steps-sidebar {
+    width: 20%;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
+.steps-sidebar h2 {
+    margin-top: 0;
+}
+
+.steps-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.steps-sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.steps-sidebar ul li.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    margin-top: 20px;
+}
+
+.progress-bar p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.progress {
+    background-color: #ccc;
+    height: 10px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+#progress-bar-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* Content Area */
+.content-area {
+    flex: 2;
+    padding: 20px;
+}
+
+.content-area form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-area form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.content-area form input, .content-area form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.content-area button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content-area button:hover {
+    background-color: #45a049;
+}
+
+/* Resume Preview */
+.template-preview {
+    width: 25%;
+    background-color: #fff;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    text-align: center;
+}
+
+.template-preview h3 {
+    margin: 0 0 20px;
+}
+
+#resume-preview {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 300px;
+}
+
+#resume-preview p {
+    color: #666;
+}
+
+#change-template-btn {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#change-template-btn:hover {
+    background-color: #0056b3;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    display: flex;
+    padding: 20px;
+}
+
+.form-section, .preview-section {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+textarea, input, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.preview-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    overflow: auto;
+}
+
+#resume-preview {
+    text-align: left;
+}
+
+#resume-preview header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#resume-preview h2 {
+    color: #4CAF50;
+}

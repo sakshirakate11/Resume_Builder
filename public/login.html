@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            padding: 50px;
+            background: url('https://static.vecteezy.com/system/resources/previews/011/508/649/original/abstract-blue-background-vector.jpg') no-repeat center center; /* Background image */
+            background-size: cover; /* Makes the image fill the background */
+        }
+        form {
+            margin: auto;
+            width: 300px;
+            
+            padding: 20px;
+            border-radius: 8px;
+            
+        }
+        input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #5bcaecec;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="login-form">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Log In</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // ✅ Store authentication token
+                    localStorage.setItem('authToken', data.token); 
+
+                    // ✅ Redirect user to resume creation page
+                    window.location.href = 'create_resume.html'; 
+
+                } else {
+                    // Show an alert if login fails
+                    alert("❌ Incorrect login! Please check your username and password.");
+                }
+            } catch (error) {
+                // Catch and show any unexpected errors
+                alert('🚨 An error occurred during login. Please try again.');
+            }
+        });
+
+        // ✅ Keep users on the login page unless logged in
+        if (localStorage.getItem('authToken')) {
+            console.log("✅ User already logged in. Redirecting...");
+            window.location.href = 'create_resume.html'; // Redirect if already authenticated
+        }
+    </script>
+</body>
+</html>

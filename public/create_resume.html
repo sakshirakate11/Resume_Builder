@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Resume</title>
+    <link rel="stylesheet" href="create_resume.css">
+</head>
+<body>
+    <!-- Ensure users cannot bypass login -->
+    <script>
+        if (!localStorage.getItem('authToken')) {
+            alert("⚠️ You must log in first!");
+            window.location.href = 'login.html'; // Redirect back to login page
+        }
+    </script>
+
+    <header>
+        <h1>Create Your Resume</h1>
+        <nav>
+            <a id="dashboard-btn" href="dashboard.html">Dashboard</a>
+            <a id="logout-btn" href="#">Logout</a>
+            <a href="edit_resume.html" class="action-btn">Create My Resume</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sidebar with Steps -->
+        <aside class="steps-sidebar">
+            <h2>Steps</h2>
+            <ul>
+                <li class="active">Heading</li>
+                <li>Work History</li>
+                <li>Education</li>
+                <li>Skills</li>
+                <li>Summary</li>
+                <li>Finalize</li>
+            </ul>
+            <div class="progress-bar">
+                <p>Resume Completeness: <span id="progress-percentage">0%</span></p>
+                <div class="progress">
+                    <div id="progress-bar-fill"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <section class="content-area">
+            <h2>Heading</h2>
+            <form id="resume-heading-form">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" placeholder="John" required>
+
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" placeholder="Doe" required>
+
+                <label for="city">City:</label>
+                <input type="text" id="city" placeholder="New York" required>
+
+                <label for="country">Country:</label>
+                <input type="text" id="country" placeholder="USA" required>
+
+                <label for="pin-code">Pin Code:</label>
+                <input type="text" id="pin-code" placeholder="10001" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" placeholder="(123) 456-7890" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="john.doe@example.com" required>
+
+                <fieldset>
+                    <legend>Additional Information</legend>
+                    <label for="linkedin">LinkedIn:</label>
+                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+
+                    <label for="website">Website:</label>
+                    <input type="url" id="website" placeholder="https://yourwebsite.com">
+
+                    <label for="driving-license">Driving License:</label>
+                    <input type="text" id="driving-license" placeholder="123456789">
+                </fieldset>
+
+                <button type="submit">Save & Continue</button>
+            </form>
+        </section>
+
+        <!-- Resume Template Preview -->
+        <aside class="template-preview">
+            <h3>Resume Preview</h3>
+            <div id="resume-preview">
+                <p id="preview-name">[Your Name]</p>
+                <p id="preview-contact">[Contact Details]</p>
+                <p id="preview-summary">[Professional Summary]</p>
+            </div>
+            <button id="change-template-btn">Change Template</button>
+        </aside>
+    </main>
+
+    <script>
+        // Track progress
+        const progressBarFill = document.getElementById('progress-bar-fill');
+        const progressPercentage = document.getElementById('progress-percentage');
+        let currentProgress = 0;
+
+        document.getElementById('resume-heading-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Fetch input values
+            const firstName = document.getElementById('first-name').value;
+            const surname = document.getElementById('surname').value;
+            const email = document.getElementById('email').value;
+
+            // Update resume preview
+            document.getElementById('preview-name').textContent = `${firstName} ${surname}`;
+            document.getElementById('preview-contact').textContent = email;
+
+            // Update progress
+            currentProgress += 20; // Increment progress bar
+            progressBarFill.style.width = `${currentProgress}%`;
+            progressPercentage.textContent = `${currentProgress}%`;
+
+            alert('Resume information saved!');
+        });
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.removeItem('authToken'); // Clear authentication
+            window.location.href = 'login.html'; // Redirect to login page
+        });
+
+        // Handle template change dynamically
+        document.getElementById('change-template-btn').addEventListener('click', () => {
+            const templates = ["modern", "classic", "creative"];
+            const selectedTemplate = templates[Math.floor(Math.random() * templates.length)];
+            document.getElementById('resume-preview').innerHTML = `<img src="images/${selectedTemplate}_template.jpg" alt="${selectedTemplate} Resume Template">`;
+        });
+    </script>
+</body>
+</html>

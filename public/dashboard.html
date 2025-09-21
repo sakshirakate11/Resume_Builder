@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Dashboard</h1>
+        <nav>
+            <a id="logout-btn" href="#">Logout</a>
+        </nav>
+    </header>
+    <section class="content">
+        <h2>Hello, <span id="username"></span>!</h2>
+        <p>This is your personal space. You can create and manage your resumes here.</p>
+        <button id="create-resume-btn">Create Resume</button> 
+
+        <a href="resume_builder.html" class="resume-builder-btn">Open Resume Builder</a>
+    </section>
+
+    <script>
+        
+    
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('authToken');
+
+            // Redirect to login page if no token is found
+            if (!token) {
+                alert('You must log in to access the dashboard!');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                // Verify the token with the backend
+                const response = await fetch('/protected', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('username').textContent = data.username;
+                } else {
+                    throw new Error('Invalid or expired token.');
+                }
+            } catch (error) {
+                alert(error.message);
+                localStorage.removeItem('authToken'); // Clear token
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.removeItem('authToken'); // Clear the token
+            alert('You have been logged out!');
+            window.location.href = 'login.html'; // Redirect to login page
+        });
+    </script>
+</body>
+</html>

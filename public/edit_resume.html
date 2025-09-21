@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Resume</title>
+    
+    <!-- Link Stylesheets -->
+    <link rel="stylesheet" href="create_resume.css">
+    <link rel="stylesheet" href="edit_resume.css">
+    
+    <!-- Include JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Edit Your Resume</h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="resume_builder.html">Back to Builder</a>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Form Section -->
+        <section class="form-section">
+            <h2>Edit Your Resume Details</h2>
+            <form id="resume-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+
+                <label for="contact">Contact Information:</label>
+                <textarea id="contact" placeholder="Enter your address, phone, and email" required></textarea>
+
+                <label for="profile">Professional Profile:</label>
+                <textarea id="profile" placeholder="Enter a short professional profile"></textarea>
+
+                <label for="skills">Skills:</label>
+                <textarea id="skills" placeholder="Enter your skills, separated by commas"></textarea>
+
+                <label for="work-history">Work History:</label>
+                <textarea id="work-history" placeholder="Enter your work history"></textarea>
+
+                <label for="education">Education:</label>
+                <textarea id="education" placeholder="Enter your education details"></textarea>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </section>
+
+        <!-- Preview Section -->
+        <section class="preview-section">
+            <h2>Resume Preview</h2>
+            <div id="resume-preview">
+                <header>
+                    <h1 id="preview-name">[Your Name]</h1>
+                    <p id="preview-contact">Contact Information</p>
+                </header>
+                <section>
+                    <h2>Professional Profile</h2>
+                    <p id="preview-profile">A short professional summary will appear here.</p>
+                </section>
+                <section>
+                    <h2>Skills</h2>
+                    <ul id="preview-skills"></ul>
+                </section>
+                <section>
+                    <h2>Work History</h2>
+                    <p id="preview-work-history">Job titles and descriptions will appear here.</p>
+                </section>
+                <section>
+                    <h2>Education</h2>
+                    <p id="preview-education">Education details will appear here.</p>
+                </section>
+                
+                <button id="download-pdf-btn">Generate PDF & Download</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include JavaScript -->
+    <script src="resume_editor.js"></script>
+    
+    <!-- JavaScript for PDF Generation -->
+    <script>
+        document.getElementById('resume-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+            const profile = document.getElementById('profile').value;
+            const skills = document.getElementById('skills').value.split(',');
+            const workHistory = document.getElementById('work-history').value;
+            const education = document.getElementById('education').value;
+
+            // Update preview
+            document.getElementById('preview-name').textContent = name;
+            document.getElementById('preview-contact').textContent = contact;
+            document.getElementById('preview-profile').textContent = profile;
+            document.getElementById('preview-work-history').textContent = workHistory;
+            document.getElementById('preview-education').textContent = education;
+
+            const skillsList = document.getElementById('preview-skills');
+            skillsList.innerHTML = ""; 
+            skills.forEach(skill => {
+                const li = document.createElement("li");
+                li.textContent = skill.trim();
+                skillsList.appendChild(li);
+            });
+        });
+
+        // PDF Generation
+        document.getElementById('download-pdf-btn').addEventListener('click', () => {
+            const { jsPDF } = window.jspdf;
+
+            // Select the resume preview section
+            const resumeElement = document.getElementById('resume-preview');
+
+            html2canvas(resumeElement, { scale: 2 }).then((canvas) => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('portrait', 'mm', 'a4');
+
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+
+                // Scale the image to fit within A4
+                const ratio = Math.min(pageWidth / canvasWidth, pageHeight / canvasHeight);
+                const imgWidth = canvasWidth * ratio;
+                const imgHeight = canvasHeight * ratio;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.save('resume.pdf');
+            });
+        });
+    </script>
+</body>
+</html>
+
+

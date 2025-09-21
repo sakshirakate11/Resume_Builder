@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Home</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Resume Builder</h1>
+        <nav>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+            <a href="resume_builder.html">Resume Builder</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>The Ultimate Online Resume Builder</h1>
+        <p>Easily create professional resumes for any job with our platform.</p>
+        <div class="buttons">
+            <a href="signup.html" class="signup">Get Started</a>
+            <a href="login.html" class="login">Login</a>
+            
+        </div>
+    </section>
+
+<!-- Resume Templates Section -->
+<section class="templates">
+    <h2>Pick Your Template</h2>
+    <div class="template-list">
+        <div class="template">
+            <img src="https://cdn-images.zety.com/templates/zety/valera-11-classic-silver-dark-332@3x.png" alt="Modern Template">
+            <h3>Modern Template</h3>
+            <a href="resume_builder.html?template=modern" class="select-template">Edit This Template</a>
+        </div>
+        <div class="template">
+            <img src="https://www.myperfectresume.com/wp-content/uploads/2023/09/resume-modern-template.png" alt="Classic Template">
+            <h3>Classic Template</h3>
+            <a href="resume_builder.html?template=classic" class="select-template">Edit This Template</a>
+        </div>
+        <div class="template">
+            <img src="https://beamjobs.wpenginepowered.com/wp-content/uploads/2023/01/academic-resume-template.png" alt="Creative Template">
+            <h3>Creative Template</h3>
+            <a href="resume_builder.html?template=creative" class="select-template">Edit This Template</a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Use Resume Builder?</h2>
+        <div class="feature">
+            <h3>Professional Templates</h3>
+            <p>Choose from a variety of templates to make your resume stand out.</p>
+        </div>
+        <div class="feature">
+            <h3>Easy Customization</h3>
+            <p>Edit fonts, colors, and layouts with our user-friendly interface.</p>
+        </div>
+        <div class="feature">
+            <h3>Download in Multiple Formats</h3>
+            <p>Save your resume in PDF, Word, or other formats with one click.</p>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const queryParams = new URLSearchParams(window.location.search);
+            const templateType = queryParams.get('template');
+    
+            const previewSection = document.getElementById('template-preview');
+            const templateMap = {
+                modern: 'images/modern_template.jpg',
+                classic: 'images/classic_template.jpg',
+                creative: 'images/creative_template.jpg'
+            };
+    
+            // Display the selected template
+            if (templateType && templateMap[templateType]) {
+                previewSection.innerHTML = `<img src="${templateMap[templateType]}" alt="${templateType} Template">`;
+            } else {
+                previewSection.innerHTML = '<p>No template selected.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

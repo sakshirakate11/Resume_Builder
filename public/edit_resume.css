@@ -1,0 +1,111 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0px;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #91c5e5d4; /* You can change this to #f8f8f8 if needed */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    margin: 0 10px;
+    color: #c03bd4c6; /* Change to rgb(107, 42, 42) if needed */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.form-section, .preview-section {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: rgb(252, 246, 252); /* Change to white if needed */
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3c81e9;
+    text-align: center;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #161716; /* Change to #050505 if needed */
+    padding-bottom: 5px;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+textarea, input, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50; /* Change to #3ce9a7 if needed */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #45a049; /* Change to #f2edf7 if needed */
+}
+
+.preview-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    overflow: auto;
+}
+
+#resume-preview {
+    width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+#resume-preview header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#resume-preview h2 {
+    color: #55adff;
+}

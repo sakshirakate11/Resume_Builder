@@ -1,0 +1,20 @@
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const templateType = queryParams.get('template');
+
+        const previewSection = document.getElementById('template-preview');
+        const templateMap = {
+            modern: 'https://www.myperfectresume.com/wp-content/uploads/2023/09/resume-modern-template.png',
+            classic: 'images/classic_template.jpg',
+            creative: 'images/creative_template.jpg'
+        };
+
+        // Display the selected template
+        if (templateType && templateMap[templateType]) {
+            previewSection.innerHTML = `<img src="${templateMap[templateType]}" alt="${templateType} Template">`;
+        } else {
+            previewSection.innerHTML = '<p>No template selected.</p>';
+        }
+    });
+</script>
